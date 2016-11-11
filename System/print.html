@@ -6,17 +6,9 @@
  <title>つくシフトを反映する</title>
  <link rel="stylesheet" type="text/css" href="css/botn.css">
  
- <style type="text/css">
-<!--
-.scr {
-  overflow: scroll;   /* スクロール表示 */
-  width: 600px;
-  height: 600px;
-  background-color: red;
-}
--->
-</style>
-
+  <style type="text/css">
+  </style>
+ 
  <script type="text/javascript">
  <!--
 			 window.resizeTo(800,600);
@@ -30,9 +22,9 @@
  
                 // 画面を描画
                 document.open();
-                document.write("<html><head><meta charset='utf-8' />");
+                document.write("<html><head><meta charset='utf-8'>");
                 document.write("<title>JavaScriptでExcelファイルからデータ取得</title></head>");
-                document.write("<body><input type='button' value='函館近郊'><div class="scr">");
+                document.write("<body>");
  
                 // ブックを開く
                 var workBook = excel.Workbooks.Open("C:/Users/so02120/Desktop/new/master3_1.csv");
@@ -73,7 +65,7 @@
                     max_row++;
                 }
  
-                document.write("</table></div></body></html>");
+                document.write("</table></body></html>");
                 document.close();
  
                 // Excelファイルを閉じる
