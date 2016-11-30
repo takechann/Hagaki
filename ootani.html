@@ -1,0 +1,326 @@
+﻿<html>
+<head>
+
+<meta charset="utf-8">
+<title>文字列探索</title>
+
+<script type="text/javascript">
+
+
+<!--
+function movRow(oj)
+{
+    if(swt(oj)=='tbl0')
+      var targetId = 'tbl1'
+	else
+      var targetId = 'tbl0'
+	  
+	  
+    //クローン行作成
+    var coj = oj.parentNode.parentNode.cloneNode(true)
+
+    //ターゲットテーブルへクローン追加
+    var targetTable = document.getElementById(targetId)
+    targetTable.firstChild.insertBefore( coj , targetTable.firstChild.firstChild )
+
+    //カレント行削除
+    oj.parentNode.parentNode.parentNode.removeChild(oj.parentNode.parentNode)
+}
+
+function movRowRight(oj)
+{
+      var targetId = 'tbl1'
+
+    //クローン行作成
+    var coj = oj.parentNode.parentNode.cloneNode(true)
+
+    //ターゲットテーブルへクローン追加
+    var targetTable = document.getElementById(targetId)
+    targetTable.firstChild.insertBefore( coj , targetTable.firstChild.firstChild)
+
+    //カレント行削除
+    oj.parentNode.parentNode.parentNode.removeChild(oj.parentNode.parentNode)
+}
+
+function movRowLeft(oj)
+{
+      var targetId = 'tbl0'
+
+    //クローン行作成
+    var coj = oj.parentNode.parentNode.cloneNode(true)
+
+    //ターゲットテーブルへクローン追加
+    var targetTable = document.getElementById(targetId)
+    targetTable.firstChild.insertBefore( coj , targetTable.firstChild.firstChild )
+
+    //カレント行削除
+    oj.parentNode.parentNode.parentNode.removeChild(oj.parentNode.parentNode)
+}
+
+function AllNotSend() {
+　　　var table = document.getElementById('tbl0');
+      var collection = table.rows;
+	  
+for(var i=0; i<table.rows.length;){
+      var tr = collection.item(0);
+	  var td = tr.cells.item(1);
+      
+	  movRowRight(td.firstChild);
+}
+}
+
+function AllSend() {
+　　　var table = document.getElementById('tbl1');
+      var collection = table.rows;
+	  
+for(var i=0; i<table.rows.length;){
+      var tr = collection.item(0);
+	  var td = tr.cells.item(1);
+      
+	  movRowLeft(td.firstChild);
+}
+}
+
+function hakodate(){
+
+	var table = document.getElementById('tbl1')
+	var collection = table.rows
+	
+
+for(var i=0; i<table.rows.length;){
+	var tr = collection.item(i)
+	var td = tr.cells.item(2)
+	if(td.firstChild.nodeValue.indexOf('函館市') != -1){
+		movRowLeft(td.firstChild)
+	}else if(td.firstChild.nodeValue.indexOf('七飯町') != -1){
+		movRowLeft(td.firstChild)
+	}else if(td.firstChild.nodeValue.indexOf('北斗市') != -1){
+		movRowLeft(td.firstChild)
+	}else if(td.firstChild.nodeValue.indexOf('森町') != -1){
+		movRowLeft(td.firstChild)
+	}else{
+		i++;
+	}
+}
+}
+
+function first(){
+	var table = document.getElementById('tbl1')
+	var collection = table.rows
+
+for(var i=0; i<table.rows.length;){
+	var tr = collection.item(i)
+	var td = tr.cells.item(5)
+		if(td.firstChild.nodeValue.indexOf('1年生') != -1){
+			movRowLeft(td.firstChild)
+		}else{
+			i++;
+		}
+	}
+}
+
+function second(){
+	var table = document.getElementById('tbl1')
+	var collection = table.rows
+
+for(var i=0; i<table.rows.length;){
+	var tr = collection.item(i)
+	var td = tr.cells.item(5)
+		if(td.firstChild.nodeValue.indexOf('2年生') != -1){
+			movRowLeft(td.firstChild)
+		}else{
+			i++;
+		}
+	}
+}
+
+function third(){
+	var table = document.getElementById('tbl1')
+	var collection = table.rows
+
+for(var i=0; i<table.rows.length;){
+	var tr = collection.item(i)
+	var td = tr.cells.item(5)
+		if(td.firstChild.nodeValue.indexOf('3年生') != -1){
+			movRowLeft(td.firstChild)
+		}else{
+			i++;
+		}
+	}
+}
+
+function fourth(){
+	var table = document.getElementById('tbl1')
+	var collection = table.rows
+
+for(var i=0; i<table.rows.length;){
+	var tr = collection.item(i)
+	var td = tr.cells.item(5)
+		if(td.firstChild.nodeValue.indexOf('4年生') != -1){
+			movRowLeft(td.firstChild)
+		}else{
+			i++;
+		}
+	}
+}
+
+function fifth(){
+	var table = document.getElementById('tbl1')
+	var collection = table.rows
+
+for(var i=0; i<table.rows.length;){
+	var tr = collection.item(i)
+	var td = tr.cells.item(5)
+		if(td.firstChild.nodeValue.indexOf('5年生') != -1){
+			movRowLeft(td.firstChild)
+		}else{
+			i++;
+		}
+	}
+}
+
+function sixth(){
+	var table = document.getElementById('tbl1')
+	var collection = table.rows
+
+for(var i=0; i<table.rows.length;){
+	var tr = collection.item(i)
+	var td = tr.cells.item(5)
+		if(td.firstChild.nodeValue.indexOf('6年生') != -1){
+			movRowLeft(td.firstChild)
+		}else{
+			i++;
+		}
+	}
+}
+
+function swt(oj)
+{
+  return oj.parentNode.parentNode.parentNode.parentNode.getAttribute('id')
+}
+
+//-->
+</script>
+</head>
+
+<body>
+
+
+<input type="button" value="全員送る" onclick="AllSend()">
+<input type="button" value="全員送らない" onclick="AllNotSend()">
+<input type="button" value="函館市近郊にのみ送る" onclick="AllNotSend(); hakodate()">
+<br>
+<input type="button" value="1年生にのみ送る" onclick="AllNotSend(); first()">
+<input type="button" value="2年生にのみ送る" onclick="AllNotSend(); second()">
+<input type="button" value="3年生にのみ送る" onclick="AllNotSend(); third()">
+<input type="button" value="4年生にのみ送る" onclick="AllNotSend(); fourth()">
+<input type="button" value="5年生にのみ送る" onclick="AllNotSend(); fifth()">
+<input type="button" value="6年生にのみ送る" onclick="AllNotSend(); sixth()">
+
+
+
+<br><br>
+
+<table id="tbl">
+  <tr>
+   <td bgcolor="#009966" valign="top">
+
+     <!-- 左のテーブル 
+         (スペースや改行はmozilla,N7などは#textノードとして処理するので
+          最初のtrとtableタグの間にはスペースや改行を入れないでください)
+     -->
+     <table id="tbl0"><tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児ふ</td>
+         <td>041-0806</td>
+		 <td>北海道函館市美原</td>
+		 <td>2012年8月5日</td>
+		 <td>4歳</td>
+		 <td>3年生</td>
+         <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+       <tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児C</td>
+         <td>040-0022</td>
+<td>函館市</td>
+<td>2015年8月25日</td>
+<td>1歳</td>
+<td>4年生</td>
+         <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+       <tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児D</td>
+         <td>069-1203</td>
+<td>由仁町</td>
+<td>2014年8月26日</td>
+<td>2歳</td>
+<td>4年生</td>
+         <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+       <tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児E</td>
+         <td>041-1121</td>
+<td>七飯町大川</td>
+<td>2015年8月27日</td>
+<td>1歳</td>
+<td>2年生</td>
+		 <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+       <tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児F</td>
+         <td>042-001</td>
+<td>函館市</td>
+<td>2013年3月18日</td>
+<td>3歳</td>
+<td>2年生</td>
+         <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+     </table>
+     
+   </td>
+   <td bgcolor="#9966ff" valign="top">
+
+
+     <!-- 右のテーブル 
+         (スペースや改行はmozilla,N7などは#textノードとして処理するので
+          最初のtrとtableタグの間にはスペースや改行を入れないでください)
+     -->
+     <table id="tbl1"><tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児G</td>
+         <td>064-1191</td>
+<td>札幌市</td>
+<td>2014年5月29日</td>
+<td>2歳</td>
+<td>5年生</td>
+         <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+       <tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児H</td>
+         <td>121-1212</td>
+<td>青森県</td>
+<td>2016年1月3日</td>
+<td>0歳</td>
+<td>1年生</td>
+         <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+     </table>
+
+    </td>
+  </tr>
+</table>
+<br>
+</body>
+</html>
