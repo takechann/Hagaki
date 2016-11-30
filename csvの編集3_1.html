@@ -1,0 +1,165 @@
+<html>
+<head>
+<script type="text/javascript">
+<!--
+
+
+function movRow(oj)
+{
+    if(swt(oj)=='tbl0')
+      var targetId = 'tbl1'
+    else
+      var targetId = 'tbl0'
+
+    //クローン行作成
+    var coj = oj.parentNode.parentNode.cloneNode(true)
+
+    //ターゲットテーブルへクローン追加
+    var targetTable = document.getElementById(targetId)
+    targetTable.firstChild.insertBefore( coj , targetTable.firstChild.firstChild )
+
+    //カレント行削除
+    oj.parentNode.parentNode.parentNode.removeChild(oj.parentNode.parentNode)
+}
+
+function swt(oj)
+{
+  return oj.parentNode.parentNode.parentNode.parentNode.getAttribute('id')
+}
+
+
+//-->
+
+<!--
+function movAllRight(){
+
+ var targetTable = document.getElementById(tbl0)
+ 
+ 
+for(var i=0;i<tbl0.row.length;i++){
+
+var tr = collection.item(i);
+var td = tr.cells.item(1);
+
+      td.firstChild.nodeValue = "送らない";
+
+}
+}
+
+function movAllLeft(){
+
+}
+
+
+//-->
+</script>
+</head>
+
+<body>
+
+「<-->」ボタンをクリックするとその行が隣のテーブルへ移動する。
+<br><br>
+
+<table id="tbl">
+  <tr>
+   <td bgcolor="#009966" valign="top">
+
+     <!-- 左のテーブル 
+         (スペースや改行はmozilla,N7などは#textノードとして処理するので
+          最初のtrとtableタグの間にはスペースや改行を入れないでください)
+     -->
+     <table id="tbl0"><tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児ふ</td>
+         <td>041-0806</td>
+		 <td>函館市</td>
+		 <td>2012年8月5日</td>
+		 <td>4歳</td>
+		 <td>3年生</td>
+         <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+       <tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児C</td>
+         <td>040-0022</td>
+<td>函館市</td>
+<td>2015年8月25日</td>
+<td>1歳</td>
+<td>4年生</td>
+         <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+       <tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児D</td>
+         <td>069-1203</td>
+<td>由仁町</td>
+<td>2014年8月26日</td>
+<td>2歳</td>
+<td>4年生</td>
+         <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+       <tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児E</td>
+         <td>041-1121</td>
+<td>七飯町</td>
+<td>2015年8月27日</td>
+<td>1歳</td>
+<td>2年生</td>
+		 <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+       <tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児F</td>
+         <td>042-001</td>
+<td>函館市</td>
+<td>2013年3月18日</td>
+<td>3歳</td>
+<td>2年生</td>
+         <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+     </table>
+     
+   </td>
+   <td bgcolor="#9966ff" valign="top">
+
+
+     <!-- 右のテーブル 
+         (スペースや改行はmozilla,N7などは#textノードとして処理するので
+          最初のtrとtableタグの間にはスペースや改行を入れないでください)
+     -->
+     <table id="tbl1"><tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児G</td>
+         <td>064-1191</td>
+<td>札幌市</td>
+<td>2014年5月29日</td>
+<td>2歳</td>
+<td>5年生</td>
+         <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+       <tr bgcolor="#cccccc">
+         <td bgcolor="#ffcc33">園児H</td>
+         <td>121-1212</td>
+<td>青森県</td>
+<td>2016年1月3日</td>
+<td>0歳</td>
+<td>1年生</td>
+         <td>
+           <input type="button" value=" <--> " onclick="movRow(this)">
+         </td>
+       </tr>
+     </table>
+
+    </td>
+  </tr>
+</table>
+<br>
+</body>
+</html>
