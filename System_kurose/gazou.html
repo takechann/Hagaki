@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>文面の印刷</title>
+  <link rel="stylesheet" type="text/css" href="css/gazou.css">
+  <style>
+    #input{
+      font-size:20px;
+    }
+    #input:hover{
+      cursor:pointer;
+      opacity:0.5;
+    }
+    #hozon{
+      font-size:20px;
+    }
+    #hozon:hover{
+      cursor:pointer;
+      opacity:0.5;
+    }
+    #load{
+      font-size:20px;
+    }
+    #load:hover{
+      cursor:pointer;
+      opacity:0.5;
+    }
+    #file_line{
+      overflow: scroll; 
+      background-color: white;
+      position: absolute;
+      top:25%;
+      width : 45%;
+      height :500px;
+      border: solid 3px;
+      min-height: 50px;
+      padding: 20px;
+    }
+
+    #files{
+      text-align:center;
+      font-size:30px;
+      text-shadow: 1px 1px 0 #fff;
+    }
+    #files:hover{
+      cursor:pointer;
+      opacity:0.5;
+    }
+    #files:empty::before {
+      content: "(ファイルが保存されていません)";
+      font-size:20px;
+      line-height:300px;
+    }
+    #afiles:hover{
+      cursor:pointer;
+      opacity:0.5;
+    }
+    #preview{
+      position:absolute;
+      top :20%;
+      right:15%;
+      font-size: 25px;
+    }
+    #preview_line{
+      width :35%;
+      height:400px;
+      padding:20px;
+      position:absolute;
+      top:30%;
+      right:7%;
+      border: solid 3px #9c9;
+      padding:20px;
+      text-shadow:1px 1px 0 #fff;
+      background-color: #cfc;
+      z-index: 1;
+    }
+
+    #preview_image{
+
+      display:block;
+
+      margin-left:auto;
+
+      margin-right:auto;
+
+      z-index: 2;
+    }
+    #preview_file:empty::before {
+      content: "(ファイルが選択されていません)";
+      font-size:20px;
+    }
+    #preview_file{
+      text-align:center;
+      font-size:30px;
+    }
+
+    #fin_left{
+      position:absolute;
+      top:85%;
+      right:25%;
+      font-size: 20px;
+    }
+    #fin_left:hover{
+      cursor:pointer;
+      opacity:0.5;
+    }
+    #fin_right{
+      position:absolute;
+      top:85%;
+      right:10%;
+      font-size:20px;
+    }
+    #fin_right:hover{
+      cursor:pointer;
+      opacity:0.5;
+    }
+
+  </style>
+</head>
+<body>
+  <script type="text/javascript">
+  //---------ファイルの保存---------
+  function saveStorage(id){
+    var target = document.getElementById(id);
+    var str = target.value;
+    localStorage.setItem("dataFile",str);
+
+    //オブジェクトの保存
+    /*localStorage.setItem(key, JSON.stringify({"hoge": "fuga"}));
+    localStorange.setItem("dataFile",JSON.stringify(obj));
+    */
+
+    console.log(str);
+}
+
+//---------保存ファイルの読み込み-----------
+function loadStorage(id){
+  var target = document.getElementById(id);
+  var msg = localStorage.getItem("dataFile");
+  target.innerHTML = msg;
+     // console.log(msg);
+ }
+
+function fileClick(id){
+    var target = document.getElementById(id);
+    console.log(target);
+    var msg=localStorage.getItem("dataFile");
+    console.log(msg);
+
+    //プレビューにクリックしたファイルの表示
+    target.innerHTML = msg;
+    //document.write('<img src="image/Word2013.png" width="104" height="91" id=preview_image/>');
+    
+    //プレビューの上に画像ファイルの表示
+    var img = document.getElementById("preview_image"); // Ａ
+        img.src = "image/Word2013.png";                           // Ｂ
+        img.width = 150;                                // Ｃ　　
+        img.onload();  
+      }
+
+ function test() {
+        var img = document.getElementById("preview_image"); // Ａ
+        img.src = "image/Word2013.png";                           // Ｂ
+        img.width = 150;                                // Ｃ　　
+        img.onload();                                      // Ｄ
+    }
+</script>
+<div class="header">つくポス</div>
+<form>
+  <input type="button" value="ホームへ戻る" class="header_right" onClick="location.href='botn.html'">
+</form>
+
+<div class="main">
+  <br>
+
+  <input type="file" id="input">
+  <input  id="hozon" type="button" value="保存"onclick="saveStorage('input');">
+  <input id="load" type="button" value="読み込み"onclick="loadStorage('files');">
+  
+  <div id ="file_line">
+    <ul id="files"  style="list-style:none;" onclick="fileClick('preview_file');"></ul>
+  </div>
+  
+  <div id="preview"><p>選択中のファイルはこちら</p></div>
+  <div id="preview_line">
+    <div><img id="preview_image"></div> 
+    <br><br>
+    <div id="preview_file"></div>
+  </div>    
+
+  <div><input type="button" value="ファイルの編集" id="fin_left" onclick="fileEdit();"></div>
+  <div><input type="button" value="ファイルの印刷" id="fin_right" onclick="window.print();"></div>
+
+</div>
+</body>
+</html>
+
