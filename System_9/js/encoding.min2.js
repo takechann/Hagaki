@@ -142,7 +142,7 @@ function hakodate(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(2)
+	var td = tr.cells.item(3)
 	if(td.firstChild.nodeValue.indexOf('函館市') != -1){
 		movRowLeft(td.firstChild)
 	}else if(td.firstChild.nodeValue.indexOf('七飯町') != -1){
@@ -163,7 +163,7 @@ function first(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(5)
+	var td = tr.cells.item(6)
 		if(td.firstChild.nodeValue.indexOf('1年生') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -178,7 +178,7 @@ function second(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(5)
+	var td = tr.cells.item(6)
 		if(td.firstChild.nodeValue.indexOf('2年生') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -193,7 +193,7 @@ function third(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(5)
+	var td = tr.cells.item(6)
 		if(td.firstChild.nodeValue.indexOf('3年生') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -208,7 +208,7 @@ function fourth(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(5)
+	var td = tr.cells.item(6)
 		if(td.firstChild.nodeValue.indexOf('4年生') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -223,7 +223,7 @@ function fifth(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(5)
+	var td = tr.cells.item(6)
 		if(td.firstChild.nodeValue.indexOf('5年生') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -238,7 +238,7 @@ function sixth(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(5)
+	var td = tr.cells.item(6)
 		if(td.firstChild.nodeValue.indexOf('6年生') != -1){
 			movRowLeft(td.firstChild)
 		}else{

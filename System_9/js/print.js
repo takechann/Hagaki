@@ -5,7 +5,7 @@ var wdSendToNewDocument = 0;
 var wdDoNotSaveChanges  = 0;
 
 // Microsoft Wordのテンプレートのパスを格納するための変数
-var pathTemplate = String(location.href).replace(/html\/origin.html/gi, "templates/print.doc");
+var pathTemplate = String(location.href).replace(/html\/origin.html/gi, "templates/print2.doc");
 
 // タイマー変数
 var idTimer = "";

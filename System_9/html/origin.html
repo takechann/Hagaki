@@ -6,7 +6,7 @@
 
 </style>
  <title>連名の選択</title>
- <link rel="stylesheet" type="text/css" href="css/botn.css">
+ <link rel="stylesheet" type="text/css" href="../css/botn.css">
   <style type="text/css">
   
   .submit_file_open{
@@ -47,7 +47,7 @@
                 document.write("<script src='../js/encoding.min2.js'></script>");
                 document.write("<script src='../js/print.js'></script>");
                 document.write("<body style='background-color:#DAFFE7'></body>");
-                document.write(" <a href='#' id='download' download='園児宛名情報.csv'>保存</a>");
+                document.write("<a href='#' id='download' download='園児宛名情報.csv'><input type='button' style='background-color:#F2D8DF;' value='保存'></a>");
                 document.write("<input type='button' style='background-color:#fffafa;' value='全員送る' onclick='AllSend()'>");
                 document.write("<input type='button' style='background-color:#fffafa;' value='全員送らない' onclick='AllNotSend()'>");
                 document.write("<input type='button' style='background-color:#fffafa;' value='函館市近郊にのみ送る' onclick='AllNotSend(); hakodate()'>");
@@ -58,7 +58,9 @@
                 document.write("<input type='button' style='background-color:#fffafa;' value='5年生にのみ送る' onclick='AllNotSend(); fifth()'>");
                 document.write("<input type='button' style='background-color:#fffafa;' value='6年生にのみ送る' onclick='AllNotSend(); sixth()'>");
                 document.write("<input type='button' style='background-color:#fffafa;' value='ホームへ戻る' class='header_right' onClick='home()'>");
-                document.write("<br><font size=4>データファイルを選択して、印刷ボタンを押下してください</font></br><table border='0'>	<tr><td>データファイル：</td><td><input type='file' id='filename' size='80' /></td><td><button onclick='printDoc();'>印刷</button></td></tr></table>");
+                document.write("<br><font size=4>データファイルを選択して、印刷ボタンを押下してください</font></br><table border='0'>");	
+                document.write("<tr><td>データファイル：</td><td><input type='file' id='filename' size='80' /></td>");
+                document.write("<td><button onclick='printDoc();'>印刷</button></td></tr></table>");
 				// ブックを開く
                 var workBook = excel.Workbooks.Open("C:/Users/b1014200/Desktop/System_9/master3_1.csv");
  
@@ -101,8 +103,16 @@
                     max_row++;
                 }
                 document.write("</table>");
-                document.write("<td valign='top'><table id='tbl1'><tr><th style='text-align: center;'>名前</th><th style='text-align: center;'>郵便番号</th><th style='text-align: center;'>住所</th><th style='text-align: center;'>誕生日</th><th style='text-align: center;'>年齢</th><th style='text-align: center;'>学年</th></tr></table>");
-                document.write("</td></tr></table></body></html>");
+                document.write("<td valign='top'><table id='tbl1'><tr>");
+                document.write("<th style='text-align: center;'>姓</th>");
+                document.write("<th style='text-align: center;'>名</th>");
+                document.write("<th style='text-align: center;'>郵便番号</th>");
+                document.write("<th style='text-align: center;'>住所</th>");
+                document.write("<th style='text-align: center;'>誕生日</th>");
+                document.write("<th style='text-align: center;'>年齢</th>");
+                document.write("<th style='text-align: center;'>学年</th>");
+                document.write("<th style='text-align: center;'>敬称</th></tr>");
+                document.write("</table></td></tr></table></body></html>");
                 document.close();
 
                 
