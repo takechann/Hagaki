@@ -1,0 +1,65 @@
+html{height: 100%;}
+body{height:100%;}
+header{
+    background-color: #DAFFE7;
+    font-family:富士ポップ;
+    filter:glow(color=white,strength=7);
+    font-size: 100px;
+    text-align: center;
+}
+
+.header_right{
+    font-color:black;
+    font-size:25px;
+    position:absolute;
+    top:80px;
+    right:1%;
+}
+.header_right:hover{
+    cursor:pointer;
+    opacity:0.5;
+}   
+main{
+    height :90%;
+    background-color: #F0FFF0;
+}
+
+.submit_file_open{
+    color:#666666;
+    background: #E4E4E4;
+    border: 1px solid #CCCCCC;
+    font-size: 116%;
+    padding: 10px 30px;
+    width: 200px;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+#ren_ari{
+    position :absolute;
+    top :180px;
+    left:100px;
+    color:#666666;
+    background: #E4E4E4;
+    font-size:30px;
+}
+#ren_ari:hover{
+    cursor:pointer;
+    opacity:0.5;
+}   
+
+#ren_nasi{
+    position :absolute;
+    top :180px;
+    left:300px;
+    color:#666666;
+    background: #E4E4E4;
+    font-size:30px;
+}
+#ren_nasi:hover{
+    cursor:pointer;
+    opacity:0.5;
+}   
