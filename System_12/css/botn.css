@@ -1,0 +1,86 @@
+html{height: 100%;}
+body{height:100%;}
+header{
+    background-color: #32CD32;;
+    font-family:富士ポップ;
+    filter:glow(color=white,strength=7);
+    font-size: 100px;
+    text-align: center;
+}
+.header_right{
+    font-color:black;
+    font-size:50px;
+    position:absolute;
+    top:90px;
+    right:1%;
+}
+main{
+    height :90%;
+    background-color: #DAFFE7;
+}
+
+.submit_btn_atena{
+    border: 0px;
+    width:200px;
+    height:330px;
+    background: url(../image/yuubin.png)left top no-repeat;
+    position:absolute;
+    top:290px;
+    left:300px;
+}
+.main_atena{
+     width: 220px;
+    height: 80px;
+    background-color: #EEE8AA;
+    border-radius: 80px / 50px;
+    position:absolute;
+    top:540px;
+    left:310px;
+    font-size: 20px;
+}
+.main_atena p{
+    position: relative;
+  top:50%;
+  transform: translateY(-100%);
+   right: :50%;
+   font-size:20px;
+}
+
+.submit_btn_atena:hover{
+    cursor:pointer;
+    opacity:0.5;
+}   
+
+.submit_btn_enzi{
+    border:0px;
+    width:280px;
+    height:270px;
+    background:url(../image/enzi.png)left top no-repeat;
+    position:absolute;
+    top:300px;
+    left:750px;
+    z-index: 0;
+}
+.submit_btn_enzi:hover{
+    cursor: pointer;
+    opacity:0.5;
+}
+.main_enzi{
+    width: 220px;
+    height: 80px;
+    background-color: #EEE8AA;
+    border-radius: 80px / 50px;
+    position:absolute;
+    top:540px;
+    left:770px;
+    z-index: 1;
+
+}
+.main_enzi p{
+    position: relative;
+  top:50%;
+  transform: translateY(-100%);
+   right: :50%;
+   font-size:20px;
+}
+
