@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>てすとお</title>
+  <link rel="stylesheet" type="text/css" href="css/gazou.css">
+
+  <style>
+    #droparea{
+      position: absolute;
+      top:20%;
+      width : 45%;
+      height :50px;
+      text-align:center;
+      font-size:30px;
+      background-color: #cfc;
+      border: solid 3px #9c9;
+      color: #9c9;
+      min-height: 50px;
+      padding: 20px;
+      text-shadow: 1px 1px 0 #fff;
+    }
+    #droparea p{
+      line-height :5px;
+      color:#0099FF;
+    }
+    #droparea.dropover {
+      background-color: #cff;
+      color: #9cc;
+    }
+
+    #files{
+
+      overflow: scroll; 
+      background-color: white;
+      position: absolute;
+      top:30%;
+      width : 45%;
+      height :450px;
+      text-align:center;
+      font-size:30px;
+      border: solid 3px;
+      min-height: 50px;
+      padding: 20px;
+      text-shadow: 1px 1px 0 #fff;
+    }
+    #preview_files{
+
+      overflow: scroll; 
+
+      position: absolute;
+      right:100px;
+      top:30%;
+      width : 45%;
+      height :450px;
+      text-align:center;
+      font-size:30px;
+    }
+
+
+    #files:empty::before {
+      content: "(ファイルが保存されていません)";
+      font-size:20px;
+      line-height:300px;
+    }
+
+    #files img {
+      border: solid 1px #ccc;
+      cursor: pointer;
+      height: auto;
+      margin: 0 10px;
+      max-height: 200px;
+      max-width: 200px;
+      width: auto;
+    }
+    #preview{
+      position:absolute;
+      top :20%;
+      right:15%;
+      font-size: 25px;
+    }
+    #preview_image{
+      width :35%;
+      height:300px;
+      padding:20px;
+      position:absolute;
+      top:30%;
+      right:7%;
+      border: solid 3px #9c9;
+      padding:20px;
+      text-shadow:1px 1px 0 #fff;
+      background-color: #cfc;
+    }
+    #fin_left{
+      position:absolute;
+      top:130%;
+      right:40%;
+      font-size: 20px;
+    }
+    #fin_right{
+      position:absolute;
+      top:130%;
+      right:1%;
+      font-size:20px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="header">つくポス</div>
+
+
+  <script type="text/javascript">
+    window.onload=function(){
+      var URL_BLANK_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+      var elDrop = document.getElementById('droparea');
+      var elFiles = document.getElementById('files');
+      var prFiles = document.getElementById("preview_files");
+
+      elDrop.addEventListener('dragover', function(event) {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'copy';
+        showDropping();
+      });
+
+      elDrop.addEventListener('dragleave', function(event) {
+        hideDropping();
+      });
+
+      elDrop.addEventListener('drop', function(event) {
+        event.preventDefault();
+        hideDropping();
+
+        var files = event.dataTransfer.files;
+        showFiles(files);
+      });
+
+      document.addEventListener('click', function(event) {
+        var elTarget = event.target;
+        if (elTarget.tagName === 'IMG') {
+
+          var w = window.open('about:blank');
+          var d = w.document;
+          var title = escapeHtml(elTarget.getAttribute('title'));
+
+          d.open();
+          d.write('<title>' + title + '</title>');
+
+          d.close();
+        }
+      });
+
+      function showDropping() {
+        elDrop.classList.add('dropover');
+      }
+
+      function hideDropping() {
+        elDrop.classList.remove('dropover');
+      }
+
+
+      function showFiles(files) {
+        elFiles.innerHTML = '';
+
+        for (var i=0, l=files.length; i<l; i++) {
+          var file = files[i];
+          var elFile = buildElFile(file);
+          elFiles.appendChild(elFile);
+        }
+      }
+      function showPreviewFiles(preview_files){
+        prFiles.innerHTML= '';
+
+        for(var i=0,l=preview_files.length ; i<l; i++){
+          var file=preview_files[i];
+          var previewFile = buildElFile(file);
+          prFiles.appendChild(previewFile);
+        }
+      }
+
+      function buildElFile(file) {
+        var elFile = document.createElement('li');
+
+        var text = file.name ;
+        elFile.appendChild(document.createTextNode(text));
+
+        if (file.type.indexOf('image/') === 0) {
+          var elImage = document.createElement('img');
+          elImage.src = URL_BLANK_IMAGE;
+          elFile.appendChild(elImage);
+
+          attachImage(file, elImage);
+        }
+
+        return elFile;
+      }
+
+      function attachImage(file, elImage) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+          var src = event.target.result;
+          elImage.src = src;
+          elImage.setAttribute('title', file.name);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+    function escapeHtml(source) {
+      var el = document.createElement('div');
+      el.appendChild(document.createTextNode(source));
+      var destination = el.innerHTML;
+      return destination;
+    }
+  </script>
+
+  <div class="main">
+    <div  effectallowed="move" id="droparea"><p>ここにファイルをドロップ</p></div>
+    <ul id="files"></ul>
+    <form>
+      <input type="button" value="ホームへ戻る" class="header_right" onClick="location.href='botn.html'">
+    </form>
+
+    <div id="preview"><p>選択中のファイルはこちら</p></div>
+    <div id="preview_image"><div>
+      <div id="preview_files"></div>
+
+      <div><input type="button" value="ファイルの編集" id="fin_left" onClick=></div>
+      <div><input type="button" value="ファイルの印刷" id="fin_right" onClick></div>
+
+    </div>
+  </body>
+
+  </html>
