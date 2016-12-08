@@ -1,0 +1,13 @@
+.header{
+    background-color: #DAFFE7;
+    font-family:"メイリオ",sans-serif; 
+    font-size: 80px;
+    text-align: center;
+}
+.header_right{
+    font-color:black;
+    font-size:50px;
+    position:absolute;
+    top:90px;
+    right:1%;
+}
