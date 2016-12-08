@@ -299,14 +299,14 @@ function swt(oj){
 
 function boxCheck(){
 
-for(var i=0;i<9;i++){
+for(var i=0;i<10;i++){
 	if(document.chbox.elements[i].checked == true){
 		AllNotSend();
 		break;
 	}
 }
 
-for(var i=0;i<9;i++){
+for(var i=0;i<10;i++){
 	if(document.chbox.elements[i].checked == true){
 		/*if(i==0){first();}
 		if(i==1){second();}
@@ -322,8 +322,8 @@ for(var i=0;i<9;i++){
 		if(i==2){second();}
 		if(i==4){third();}
 		if(i==6){fourth();}
-		if(i==7){fifth();}
-		if(i==8){sixth();}
+		if(i==8){fifth();}
+		if(i==9){sixth();}
 		if(i==1){seventh();}
 		if(i==3){eighth();}
 		if(i==5){ninth();}
@@ -338,7 +338,8 @@ document.chbox.elements[4].checked == false &&
 document.chbox.elements[5].checked == false &&
 document.chbox.elements[6].checked == false &&
 document.chbox.elements[7].checked == false &&
-document.chbox.elements[8].checked == false){
+document.chbox.elements[8].checked == false &&
+document.chbox.elements[9].checked == false){
 alert("学年にチェックをつけてください");
 }
 }
