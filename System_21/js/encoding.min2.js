@@ -163,7 +163,7 @@ function first(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(6)
+	var td = tr.cells.item(5)
 		if(td.firstChild.nodeValue.indexOf('小1') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -178,7 +178,7 @@ function second(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(6)
+	var td = tr.cells.item(5)
 		if(td.firstChild.nodeValue.indexOf('小2') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -193,7 +193,7 @@ function third(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(6)
+	var td = tr.cells.item(5)
 		if(td.firstChild.nodeValue.indexOf('小3') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -208,7 +208,7 @@ function fourth(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(6)
+	var td = tr.cells.item(5)
 		if(td.firstChild.nodeValue.indexOf('小4') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -223,7 +223,7 @@ function fifth(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(6)
+	var td = tr.cells.item(5)
 		if(td.firstChild.nodeValue.indexOf('小5') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -238,7 +238,7 @@ function sixth(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(6)
+	var td = tr.cells.item(5)
 		if(td.firstChild.nodeValue.indexOf('小6') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -253,7 +253,7 @@ function seventh(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(6)
+	var td = tr.cells.item(5)
 		if(td.firstChild.nodeValue.indexOf('中1') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -268,7 +268,7 @@ function eighth(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(6)
+	var td = tr.cells.item(5)
 		if(td.firstChild.nodeValue.indexOf('中2') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -283,7 +283,7 @@ function ninth(){
 
 for(var i=0; i<table.rows.length;){
 	var tr = collection.item(i)
-	var td = tr.cells.item(6)
+	var td = tr.cells.item(5)
 		if(td.firstChild.nodeValue.indexOf('中3') != -1){
 			movRowLeft(td.firstChild)
 		}else{
@@ -308,7 +308,7 @@ for(var i=0;i<9;i++){
 
 for(var i=0;i<9;i++){
 	if(document.chbox.elements[i].checked == true){
-		if(i==0){first();}
+		/*if(i==0){first();}
 		if(i==1){second();}
 		if(i==2){third();}
 		if(i==3){fourth();}
@@ -316,7 +316,17 @@ for(var i=0;i<9;i++){
 		if(i==5){sixth();}
 		if(i==6){seventh();}
 		if(i==7){eighth();}
-		if(i==8){ninth();}
+		if(i==8){ninth();}*/
+
+                if(i==0){first();}
+		if(i==2){second();}
+		if(i==4){third();}
+		if(i==6){fourth();}
+		if(i==7){fifth();}
+		if(i==8){sixth();}
+		if(i==1){seventh();}
+		if(i==3){eighth();}
+		if(i==5){ninth();}
 	}
 }
 
