@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+   <meta charset="utf-8">
+   <style>
+
+   </style>
+   <title>連名の選択</title>
+   <link rel="stylesheet" type="text/css" href="../css/origin.css">
+
+   <script type="text/javascript">
+       <!--
+            // window.resizeTo(800,600);
+            // Excelを操作するために必要
+            var excel = new ActiveXObject("Excel.Application");
+            // 初期化処理
+	          function fileOpen() {
+                // 画面からの入力値を取得
+                var file = document.getElementById("ren_ari").value;
+                // 画面を描画
+                document.open();
+                document.write("<!DOCTYPE html><html lang='ja'>");
+                document.write("<head><meta charset='utf-8'>");
+                document.write("<style>table, th, td {  border: 1px solid;}</style>");
+                document.write("<link rel='stylesheet' type='text/css' href='../css/origin.css'>");
+                document.write("<title>宛名面の印刷</title>");
+                document.write("<script src='../js/encoding.min.js'></script>");
+                document.write("<script src='../js/encoding.min2.js'></script>");
+               
+
+                document.write("<script>flag = false;function pullDown() {if(flag) ID.style.visibility = 'hidden';else ID.style.visibility = 'visible';flag = !flag;}</script>");
+
+                document.write("<script src='../js/print.js'></script>");
+                document.write("<body><header>つくポス</header>");
+                document.write("<main>");
+                
+                document.write("<input type='button' style='background-color:#F2D8DF;' value='保存' id='download' download ='園児宛名情報.csv'>");
+
+                document.write("<input type='button' style='background-color:#fffafa;' value='全員送る' class='all_send' onclick='AllSend()'>");
+                document.write("<input type='button' style='background-color:#fffafa;' value='全員送らない' class='allNot_send' onclick='AllNotSend()'>");
+                document.write("<input type='button' style='background-color:#fffafa;' value='函館市近郊にのみ送る' class= 'Hakodate' onclick='AllNotSend(); hakodate()'>");
+
+                document.write("<input type='button' style='background-color:#fffafa;' onclick='pullDown();' value='学年を選択する' class='gakunen'><br>");
+
+                document.write("<form name='chbox' id='ID'>");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル1'>小学1年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル2'>小学2年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル3'>小学3年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル4'>小学4年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル5'>小学5年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル6'>小学6年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル7'>中学1年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル8'>中学2年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル9'>中学3年生");
+                document.write("<input type='button' value='適用' onclick='boxCheck()'>")
+                document.write("</form>")
+
+                document.write("<input type='button' style='background-color:#fffafa;' value='ホームへ戻る' class='header_right' onClick='home()'>");
+
+		document.write("<div class=insatu>");   
+                document.write("<tr><td>データファイル：</td><td><input type='file' id='filename' size='30' /></td>");
+                document.write("<td><button onclick='printDoc();'>印刷</button></td></tr></table>");
+                document.write("</div>");
+		
+		document.write("<div class='printbox'><br>");
+
+		// ブックを開く
+                var workBook = excel.Workbooks.Open("C:/Users/b1014200/Desktop/System_24/System_24/data2.csv");
+
+                // シートは一番左のシートで固定
+                var workSheet = workBook.Sheets(1);
+
+                // 1行目の出力（1行目に値が存在している列までを対象に出力）
+
+                document.write("<body><table id='tbl'><tr>");
+                document.write("<td valign='top'><table id='tbl0' class='type'>");
+
+
+				document.write("<div>送らない</div>");
+
+                var max_col = 1;
+                while (1) {
+                var cell = workSheet.Cells(1, max_col);
+                // 対象セルの値が無い場合は処理を抜ける
+                if (cell == null || cell.Value == undefined)
+                break;
+                // 値を出力する
+                document.write("<th style='text-align: center;'>" + cell.Value + "</th>");
+                // 次の列の値へ
+                max_col++;
+            }
+			document.write("<th style='text-align: center;'>" + "<->" + "</th>")
+            document.write("</tr>");
+            // 2行目以降の出力（1列目に値が存在している行までを対象に出力）
+            var max_row = 2;
+            while (1) {
+            var cell = workSheet.Cells(max_row, 1);
+            // 対象セルの値が無い場合は処理を抜ける
+            if (cell == null || cell.Value == undefined)
+            break;
+            // 1行目の最終列までを対象に値を出力する
+            document.write("<tr>");
+            for ( i = 1; i < max_col; i++) {
+            cell = workSheet.Cells(max_row, i);
+			if (cell == null || cell.Value == undefined){
+            document.write("<td> </td>");
+            }else{
+            document.write("<td>" + cell.Value + "</td>");
+			}
+        }
+        document.write("<td><input type='button' style='background-color:#fffafa;' value='<->' onclick='movRow(this)'></td>");
+        document.write("</tr>");
+        // 次の行へ
+        max_row++;
+    }
+    document.write("</table>");
+    document.write("<td valign='top'><table id='tbl1' class='type'>");
+    document.write("<div>送る</div>");
+    document.write("<tr><th style='text-align: center;'>姓</th>");
+    document.write("<th style='text-align: center;'>名</th>");
+    document.write("<th style='text-align: center;'>年齢</th>");
+    document.write("<th style='text-align: center;'>郵便番号</th>");
+    document.write("<th style='text-align: center;'>住所</th>");
+    document.write("<th style='text-align: center;'>学年</th>");
+    document.write("<th style='text-align: center;'>敬称</th>");
+	document.write("<th style='text-align: center;'>連名_1</th>");
+    document.write("<th style='text-align: center;'>連名_2</th>");
+    document.write("<th style='text-align: center;'>連名_3</th>");
+    document.write("<th style='text-align: center;'>敬称_1</th>");
+    document.write("<th style='text-align: center;'>敬称_2</th>");
+    document.write("<th style='text-align: center;'>敬称_3</th>");
+    document.write("<th style='text-align: center;'><-></th></tr>");
+    document.write("</div></main>");
+    document.write("</table></td></table></body></html>");
+    document.close();
+                
+
+    // Excelファイルを閉じる
+    workBook.Close();
+}
+            function fileOpen2() {
+                // 画面からの入力値を取得
+                var file = document.getElementById("ren_nasi").value;
+                // 画面を描画
+                document.open();
+                document.write("<!DOCTYPE html><html lang='ja'>");
+                document.write("<head><meta charset='utf-8'>");
+                document.write("<style>table, th, td {  border: 1px solid;}</style>");
+                document.write("<link rel='stylesheet' type='text/css' href='../css/origin.css'>");
+                document.write("<title>宛名面の印刷</title>");
+                document.write("<script src='../js/encoding.min.js'></script>");
+                document.write("<script src='../js/encoding.min2.js'></script>");
+               
+
+                document.write("<script>flag = false;function pullDown() {if(flag) ID.style.visibility = 'hidden';else ID.style.visibility = 'visible';flag = !flag;}</script>");
+
+                document.write("<script src='../js/print2.js'></script>");
+                document.write("<body><header>つくポス</header>");
+                document.write("<main>");
+                
+                document.write("<input type='button' style='background-color:#F2D8DF;' value='保存' id='download' download ='園児宛名情報.csv'>");
+
+                document.write("<input type='button' style='background-color:#fffafa;' value='全員送る' class='all_send' onclick='AllSend()'>");
+                document.write("<input type='button' style='background-color:#fffafa;' value='全員送らない' class='allNot_send' onclick='AllNotSend()'>");
+                document.write("<input type='button' style='background-color:#fffafa;' value='函館市近郊にのみ送る' class= 'Hakodate' onclick='AllNotSend(); hakodate()'>");
+
+                document.write("<input type='button' style='background-color:#fffafa;' onclick='pullDown();' value='学年を選択する' class='gakunen'><br>");
+
+                document.write("<form name='chbox' id='ID'>");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル1'>小学1年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル2'>小学2年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル3'>小学3年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル4'>小学4年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル5'>小学5年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル6'>小学6年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル7'>中学1年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル8'>中学2年生/");
+                document.write("<input type='checkbox' style='background-color:#fffafa;' value='サンプル9'>中学3年生");
+                document.write("<input type='button' value='適用' onclick='boxCheck()'>")
+                document.write("</form>")
+
+
+                document.write("<input type='button' style='background-color:#fffafa;' value='ホームへ戻る' class='header_right' onClick='home()'>");
+
+		document.write("<div class=insatu>");   
+                document.write("<tr><td>データファイル：</td><td><input type='file' id='filename' size='30' /></td>");
+                document.write("<td><button onclick='printDoc();'>印刷</button></td></tr></table>");
+                document.write("</div>");
+		
+		document.write("<div class='printbox'><br>");
+
+		// ブックを開く
+                var workBook = excel.Workbooks.Open("C:/Users/b1014200/Desktop/System_24/System_24/data.csv");
+
+                // シートは一番左のシートで固定
+                var workSheet = workBook.Sheets(1);
+
+                // 1行目の出力（1行目に値が存在している列までを対象に出力）
+
+                document.write("<body><table id='tbl'><tr>");
+                document.write("<td valign='top'><table id='tbl0' class='type'>");
+
+
+				document.write("<div>送らない</div>");
+
+                var max_col = 1;
+                while (1) {
+                var cell = workSheet.Cells(1, max_col);
+                // 対象セルの値が無い場合は処理を抜ける
+                if (cell == null || cell.Value == undefined)
+                break;
+                // 値を出力する
+                document.write("<th style='text-align: center;'>" + cell.Value + "</th>");
+                // 次の列の値へ
+                max_col++;
+            }
+			document.write("<th style='text-align: center;'>" + "<->" + "</th>")
+            document.write("</tr>");
+            // 2行目以降の出力（1列目に値が存在している行までを対象に出力）
+            var max_row = 2;
+            while (1) {
+            var cell = workSheet.Cells(max_row, 1);
+            // 対象セルの値が無い場合は処理を抜ける
+            if (cell == null || cell.Value == undefined)
+            break;
+            // 1行目の最終列までを対象に値を出力する
+            document.write("<tr>");
+            for ( i = 1; i < max_col; i++) {
+            cell = workSheet.Cells(max_row, i);
+			if (cell == null || cell.Value == undefined){
+            document.write("<td> </td>");
+            }else{
+            document.write("<td>" + cell.Value + "</td>");
+			}
+        }
+        document.write("<td><input type='button' style='background-color:#fffafa;' value='<->' onclick='movRow(this)'></td>");
+        document.write("</tr>");
+        // 次の行へ
+        max_row++;
+    }
+    document.write("</table>");
+    document.write("<td valign='top'><table id='tbl1' class='type'>");
+    document.write("<div>送る</div>");
+    document.write("<tr><th style='text-align: center;'>姓</th>");
+    document.write("<th style='text-align: center;'>名</th>");
+    document.write("<th style='text-align: center;'>郵便番号</th>");
+    document.write("<th style='text-align: center;'>住所</th>");
+    document.write("<th style='text-align: center;'>年齢</th>");
+    document.write("<th style='text-align: center;'>学年</th>");
+    document.write("<th style='text-align: center;'>敬称</th>");
+    document.write("<th style='text-align: center;'><-></th></tr>");
+    document.write("</div></main>");
+    document.write("</table></td></table></body></html>");
+    document.close();
+
+
+    // Excelファイルを閉じる
+    workBook.Close();
+
+}
+
+-->
+
+</script>
+
+</head>
+
+<body>
+    <header>つくポス</header>
+    <main>
+        <form>
+          <input type="button" value="ホームへ戻る" class="header_right" onClick="location.href='botn.html'">
+      </form>
+
+
+      <form>
+          <input type='button' id='ren_ari' onclick='fileOpen()'>
+      </form>
+      <div class="main_ren_ari">
+          <p>おたよりはこちら</p>
+      </div>
+
+      <form>
+          <input type='button' id='ren_nasi'  onclick='fileOpen2()'>
+      </form>
+      <dic class="main_ren_nasi">
+          <p>年賀状はこちら</p>
+      </div>
+
+  </main>
+
+</body>
+</html>
+
